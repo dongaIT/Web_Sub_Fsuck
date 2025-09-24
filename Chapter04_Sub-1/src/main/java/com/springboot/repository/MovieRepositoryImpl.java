@@ -28,6 +28,12 @@ public class MovieRepositoryImpl implements MovieRepository {
 		movie3.setDirector("프란시스 포드 코폴라");
 		movie3.setDuration("175분");
 		movie3.setMovieId("IDA9306");
+		
+		listOfMovie.add(movie1);
+		listOfMovie.add(movie2);
+		listOfMovie.add(movie3);
 	}
-	
+	public List<Movie> getAllMovieList(){
+		return listOfMovie;
+	}
 }

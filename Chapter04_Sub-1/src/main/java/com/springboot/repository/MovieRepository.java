@@ -1,5 +1,9 @@
 package com.springboot.repository;
 
-public interface MovieRepository {
+import java.util.List;
 
+import com.springboot.domain.Movie;
+
+public interface MovieRepository {
+	List<Movie> getAllMovieList();
 }
