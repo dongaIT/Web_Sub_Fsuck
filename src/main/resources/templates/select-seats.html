@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>좌석 선택</title>
+</head>
+<body>
+
+    <h1>좌석 선택</h1>
+
+    <div class="seat-info">
+        <p>| 
+            인원: <span th:text="${bookingRequest.adultPerson + bookingRequest.studentPerson + bookingRequest.childPerson}">0</span>명
+        </p>
+    </div>
+
+    <div class="screen">SCREEN</div>
+
+    <form action="/process-payment" method="post" th:object="${bookingRequest}">
+        
+        <input type="hidden" th:field="*{adultPerson}" />
+        <input type="hidden" th:field="*{studentPerson}" />
+        <input type="hidden" th:field="*{childPerson}" />
+        <input type="hidden" th:field="*{customerName}" />
+        <input type="hidden" th:field="*{customerPhone}" />
+
+        <div class="seat-grid">
+            <div th:each="row : ${#numbers.sequence(1, 5)}" class="row">
+                <div th:each="col : ${#numbers.sequence(1, 10)}" class="seat-container">
+                    <th:block th:with="seatId=${'R' + row + 'C' + col}">
+                        
+                        <input type="checkbox"
+                               th:id="${seatId}"
+                               th:field="*{selectedSeats}" 
+                               th:value="${seatId}" 
+                               class="seat-input"
+                               />
+                        
+                        <label th:for="${seatId}" class="seat-label" th:text="${seatId}"></label>
+                        
+                    </th:block>
+                </div>
+            </div>
+        </div>
+
+
+        <button type="submit" class="submit-btn">다음 단계로 (결제)</button>
+    </form>
+    
+</body>
+</html>
