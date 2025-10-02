@@ -39,7 +39,7 @@ public class MovieController {
 	    return "information";
 	}
 	
-    @PostMapping("/select-seats") //좌리선
+    @PostMapping("/select-seats") 
     public String selectSeats(@ModelAttribute("bookingRequest") BookingRequest bookingRequest, Model model) {
         model.addAttribute("bookingRequest", bookingRequest);
         return "select-seats";
